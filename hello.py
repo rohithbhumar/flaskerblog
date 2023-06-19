@@ -24,4 +24,4 @@ def internal_server_e(e):
     return render_template('500.html'), 500
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
