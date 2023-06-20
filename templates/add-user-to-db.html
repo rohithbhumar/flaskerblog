@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if name %}
+
+<h1>User Lists:</h1>
+{% for message in get_flashed_messages() %}
+{% if 'already' in message %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% else %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+{% endfor %}
+<div>
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+
+        </tr>
+
+        {% for users in disp_all_users %}
+        <tr>
+            <td>
+                {{users.name}}
+            </td>
+            <td>
+                {{users.email}}
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+
+{%else %}
+
+<h1> Register User </h1>
+<br>
+<div class="row bg-secondary-subtle shadow p-3 mb-5 bg-body-tertiary rounded">
+    <form action="" method="POST" class="my-4">
+        {{ form.hidden_tag()}}
+        {{ form.name.label(class="form-label")}} {{ form.name(class="form-control w-50 p-2")}}
+        {{ form.email.label(class="form-label")}} {{form.email(class="form-control w-50 p-2")}}
+        <br>
+        {{form.submit(class="btn btn-secondary")}}
+    </form>
+</div>
+<br>
+
+<div>
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+
+        </tr>
+
+        {% for users in disp_all_users %}
+        <tr>
+            <td>
+                {{users.name}}
+            </td>
+            <td>
+                {{users.email}}
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+{% endif %}
+{% endblock content %}
